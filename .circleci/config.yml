@@ -2,6 +2,7 @@ version: 2
 # https://circleci.com/docs/configuration#machine
 jobs:
   build:
+    working_directory: ~/contentacms
     docker:
         - image: circleci/php:7.0.11
     environment:
@@ -31,10 +32,9 @@ jobs:
       TZ: "/usr/share/zoneinfo/America/Los_Angeles"
 
     steps:
+      - checkout
       - run: echo "Begin build for $CIRCLE_ENV${PR_ENV:+ for }$PR_ENV. Pantheon test environment is $TERMINUS_SITE.$TERMINUS_ENV"
-      - run:
-        name: set-github-token
-        command: |
+      - run: |
           if [ -n "$GITHUB_TOKEN" ] ; then
             composer config --global github-oauth.github.com $GITHUB_TOKEN
           fi
