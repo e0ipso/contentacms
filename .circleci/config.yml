@@ -34,6 +34,7 @@ jobs:
             - checkout
             - run: echo "Begin build for $CIRCLE_ENV${PR_ENV:+ for }$PR_ENV. Pantheon test environment is $TERMINUS_SITE.$TERMINUS_ENV"
             - run: echo 'export PATH="$PATH:~/bin:tests/scripts"' >> ~/.bashrc
+            - run: cat ~/.bashrc
             - run: composer self-update
             - run: |
                 if [ -n "$GITHUB_TOKEN" ] ; then
