@@ -34,7 +34,6 @@ jobs:
             - checkout
             - run: echo "Begin build for $CIRCLE_ENV${PR_ENV:+ for }$PR_ENV. Pantheon test environment is $TERMINUS_SITE.$TERMINUS_ENV"
             - run: echo 'export PATH="$PATH:~/bin:tests/scripts:~/.composer/vendor/bin"' >> ~/.bashrc
-            - run: cat ~/.bashrc
             - run: composer self-update
             - run: |
                 if [ -n "$GITHUB_TOKEN" ] ; then
@@ -57,13 +56,12 @@ jobs:
                 command: composer global require -n "hirak/prestissimo:^0.3"
             - run:
                 name: install-terminus
-                command: composer global require pantheon-systems/terminus "^1"
-            - run:
-                name: terminus-version
-                command: terminus --version
+                command: composer --working-dir=$HOME require pantheon-systems/terminus "^1"
+            - run: ls $HOME
+            - run: terminus --version
             - run:
                 name: install-drush
-                command: composer global require drush/drush "^8"
+                command: composer --working-dir=$HOME require drush/drush "^8"
             - run:
                 name: create-terminus-directory
                 command: mkdir -p ~/.terminus/plugins
