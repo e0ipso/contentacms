@@ -3,7 +3,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: circleci/php:7.1
+            - image: notnoopci/php:7.1.5-browsers
         working_directory: ~/contentacms
         environment:
             # In addition to the environment variables defined in this file, also
