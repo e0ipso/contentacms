@@ -57,13 +57,13 @@ jobs:
                 command: composer global require -n "hirak/prestissimo:^0.3"
             - run:
                 name: install-terminus
-                command: composer --working-dir=$HOME require pantheon-systems/terminus "^1"
+                command: composer --working-dir=~/contentacms require pantheon-systems/terminus "^1"
             - run:
                 name: terminus-version
                 command: terminus --version
             - run:
                 name: install-drush
-                command: composer --working-dir=$HOME require drush/drush "^8"
+                command: composer --working-dir=~/contentacms require drush/drush "^8"
             - run:
                 name: create-terminus-directory
                 command: mkdir -p ~/.terminus/plugins
