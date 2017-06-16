@@ -71,9 +71,9 @@ jobs:
             - run:
                 name: login-pantheon
                 command: $HOME/vendor/bin/terminus auth:login -n --machine-token="$TERMINUS_TOKEN"
-            - run:
-                name: delete-existing-environment
-                command: $HOME/vendor/bin/terminus build:env:delete:ci -n "$TERMINUS_SITE" --keep=2 --yes
+            # - run:
+            #     name: delete-existing-environment
+            #     command: $HOME/vendor/bin/terminus build:env:delete:ci -n "$TERMINUS_SITE" --keep=2 --yes
             - run: composer -n build-assets
             - run: $HOME/vendor/bin/terminus env:wake -n "$TERMINUS_SITE.dev"
             # - run: $HOME/vendor/bin/terminus build:env:create -n "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --clone-content --db-only --notify="$NOTIFY"
