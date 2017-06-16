@@ -35,9 +35,9 @@ jobs:
       - run:
         name: set-github-token
         command: |
-        if [ -n "$GITHUB_TOKEN" ] ; then
-          composer config --global github-oauth.github.com $GITHUB_TOKEN
-        fi
+          if [ -n "$GITHUB_TOKEN" ] ; then
+            composer config --global github-oauth.github.com $GITHUB_TOKEN
+          fi
       - run: git config --global user.email "$GIT_EMAIL"
       - run: git config --global user.name "Circle CI"
       - restore_cache:
