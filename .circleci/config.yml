@@ -31,7 +31,7 @@ jobs:
             TZ: "/usr/share/zoneinfo/America/Los_Angeles"
 
         steps:
-            - echo 'export PATH="$PATH:~/bin:tests/scripts"' >> ~/.bashrc
+            - run: echo 'export PATH="$PATH:~/bin:tests/scripts"' >> ~/.bashrc
             - checkout
             - run: echo "Begin build for $CIRCLE_ENV${PR_ENV:+ for }$PR_ENV. Pantheon test environment is $TERMINUS_SITE.$TERMINUS_ENV"
             - run: |
