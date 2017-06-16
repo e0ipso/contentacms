@@ -33,7 +33,7 @@ jobs:
         steps:
             - checkout
             - run: echo "Begin build for $CIRCLE_ENV${PR_ENV:+ for }$PR_ENV. Pantheon test environment is $TERMINUS_SITE.$TERMINUS_ENV"
-            - run: echo 'export PATH="$PATH:~/bin:tests/scripts:~/.composer/vendor/bin"' >> ~/.bashrc
+            - run: echo 'export PATH="$PATH:~/vendor/bin:tests/scripts:~/.composer/vendor/bin"' >> ~/.bashrc
             - run: composer self-update
             - run: |
                 if [ -n "$GITHUB_TOKEN" ] ; then
@@ -57,7 +57,6 @@ jobs:
             - run:
                 name: install-terminus
                 command: composer --working-dir=$HOME require pantheon-systems/terminus "^1"
-            - run: find $HOME/vendor
             - run: terminus --version
             - run:
                 name: install-drush
