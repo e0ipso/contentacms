@@ -21,7 +21,7 @@ jobs:
             # ADMIN_EMAIL:    The email address to give the admin when installing.
             #
             # The variables below usually do not need to be modified.
-            BRANCH: `echo $CIRCLE_BRANCH | grep -v '^\(master\|[0-9]\+.x\)$'`
+            BRANCH: "$(echo $CIRCLE_BRANCH | grep -v '^\(master\|[0-9]\+.x\)$')"
             PR_ENV: ${BRANCH:+pr-$BRANCH}
             CIRCLE_ENV: ci-$CIRCLE_BUILD_NUM
             DEFAULT_ENV: $(echo ${PR_ENV:-$CIRCLE_ENV} | tr '[:upper:]' '[:lower:]' | sed 's/[^0-9a-z-]//g' | cut -c -11 | sed 's/-$//')
