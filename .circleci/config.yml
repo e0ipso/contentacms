@@ -57,7 +57,7 @@ jobs:
             - run:
                 name: install-terminus
                 command: composer --working-dir=$HOME require pantheon-systems/terminus "^1"
-            - run: ls $HOME
+            - run: find $HOME/vendor
             - run: terminus --version
             - run:
                 name: install-drush
