@@ -31,6 +31,9 @@ jobs:
             TZ: "/usr/share/zoneinfo/America/Los_Angeles"
 
         steps:
+            - run:
+                name: print-environment-variables
+                command: printenv
             - checkout
             - run: echo "Begin build for $CIRCLE_ENV${PR_ENV:+ for }$PR_ENV. Pantheon test environment is $TERMINUS_SITE.$TERMINUS_ENV"
             - run: echo 'export PATH="$PATH:~/vendor/bin:tests/scripts:~/.composer/vendor/bin"' >> ~/.bashrc
