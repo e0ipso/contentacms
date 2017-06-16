@@ -31,11 +31,12 @@ jobs:
             TZ: "/usr/share/zoneinfo/America/Los_Angeles"
 
         steps:
+            - echo 'export PATH="$PATH:~/bin:tests/scripts"' >> ~/.bashrc
             - checkout
             - run: echo "Begin build for $CIRCLE_ENV${PR_ENV:+ for }$PR_ENV. Pantheon test environment is $TERMINUS_SITE.$TERMINUS_ENV"
             - run: |
                 if [ -n "$GITHUB_TOKEN" ] ; then
-                    composer config --global github-oauth.github.com $GITHUB_TOKEN
+                    /usr/bin/env COMPOSER_BIN_DIR=$HOME/bin composer config --global github-oauth.github.com $GITHUB_TOKEN
                 fi
             - run: git config --global user.email "$GIT_EMAIL"
             - run: git config --global user.name "Circle CI"
@@ -43,13 +44,13 @@ jobs:
                 key: composer-cache-{{ checksum "package.json" }}
             - run:
                 name: install-prestissimo
-                command: composer global require -n "hirak/prestissimo:^0.3"
+                command: /usr/bin/env COMPOSER_BIN_DIR=$HOME/bin composer global require -n "hirak/prestissimo:^0.3"
             - run:
                 name: install-prestissimo
-                command: composer global require -n "hirak/prestissimo:^0.3"
+                command: /usr/bin/env COMPOSER_BIN_DIR=$HOME/bin composer global require -n "hirak/prestissimo:^0.3"
             - run:
                 name: install-prestissimo
-                command: composer global require -n "hirak/prestissimo:^0.3"
+                command: /usr/bin/env COMPOSER_BIN_DIR=$HOME/bin composer global require -n "hirak/prestissimo:^0.3"
             - run:
                 name: install-terminus
                 command: /usr/bin/env COMPOSER_BIN_DIR=$HOME/bin composer --working-dir=$HOME require pantheon-systems/terminus "^1"
@@ -78,7 +79,7 @@ jobs:
             - run:
                 name: delete-existing-environment
                 command: terminus build:env:delete:ci -n "$TERMINUS_SITE" --keep=2 --yes
-            - run: composer -n build-assets
+            - run: /usr/bin/env COMPOSER_BIN_DIR=$HOME/bin composer -n build-assets
             - run: terminus env:wake -n "$TERMINUS_SITE.dev"
             # - run: terminus build:env:create -n "$TERMINUS_SITE.dev" "$TERMINUS_ENV" --yes --clone-content --db-only --notify="$NOTIFY"
             # - run: terminus drush -n "$TERMINUS_SITE.$TERMINUS_ENV" -- updatedb -y
