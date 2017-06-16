@@ -2,7 +2,7 @@ version: 2
 # https://circleci.com/docs/configuration#machine
 jobs:
     build:
-        working_directory: ~/contentacms
+        working_directory: $HOME
         docker:
             - image: circleci/php:7.1
         environment:
