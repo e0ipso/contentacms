@@ -21,7 +21,7 @@
     "drush/drush": "~8",
     "rvtraveller/qs-composer-installer": "^1.1",
     "webflo/drupal-core-strict": "^8",
-    "contentacms/contenta_jsonapi": "dev-8.x-1.x",
+    "contentacms/contenta_jsonapi": "dev-8.x-1.x"
   },
   "require-dev": {
     "mikey179/vfsstream": "^1.2",
@@ -38,7 +38,7 @@
     "symfony/css-selector": "^2.8"
   },
   "conflict": {
-      "drupal/drupal": "*"
+    "drupal/drupal": "*"
   },
   "minimum-stability": "alpha",
   "prefer-stable": true,
@@ -69,11 +69,21 @@
   },
   "extra": {
     "installer-paths": {
-      "web/core": ["type:drupal-core"],
-      "web/modules/contrib/{$name}": ["type:drupal-module"],
-      "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-      "web/themes/contrib/{$name}": ["type:drupal-theme"],
-      "drush/contrib/{$name}": ["type:drupal-drush"]
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
     },
     "build-env": {
       "install-cms": [
